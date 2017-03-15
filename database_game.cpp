@@ -6,6 +6,9 @@ using namespace std;
 
 #include "libsqlite.hpp" //this was taken from the 122com's 6th week(sql) 
 //along with libsqlite3.a sqlite3.ddl and sqlite3.h
+//
+//
+#include "NPC_class.cpp"
 int database(string idf)
 {
         string sqlitefile = "database1fx.sqlite";
@@ -45,13 +48,14 @@ int main()
         string id = "0";  //starting id        
         string idc = "1";        
         string con;
-        
+
+        NPC myobject;       //creating an object for the class
+        myobject.values();  //calling the void function from the NPC_class
+
         while (temp!=1)
         {
             database(id);       //calling the function
-         
             string idn;        //creates a new id 
-            
             cin>>idn;         //user enters the new id
             
             if(idn=="A" ||
@@ -60,9 +64,8 @@ int main()
             
             {
                 temp=0;    
-            }
-            
-            
+            }  
+
             else if(idn=="Q"||
                     idn=="q"||
                     idn=="quit"||
@@ -81,54 +84,39 @@ int main()
             else
             {
                 idn="";
-            }
-            
+            }            
             id=id+idn;        //the new id is added to the old one
-            
             count=count+1;    //i want it to loop 5 times
-            
             if (con=="continue")
                 {
-                  
-                    while(temp1!=1)
-                      
+                    while(temp1!=1)                      
                         {
-                        
                             database(idc);      //calling the function
-
                             string idcn;        //creates a new id 
-
                             cin>>idcn;         //user enters the new id
 
                         if(idcn=="A" ||
                            idcn=="B" ||
                            idcn=="C" ||
-                           idcn=="2")
-                        
+                           idcn=="2")                       
                             {
                               temp1=0;
                             }
-                        
                         else if(idcn=="Q"||
                                 idcn=="q"||
                                 idcn=="quit"||
                                 idcn=="Quit")
-                            
                                 {
                                   temp1=1;
                                   temp=1;
                                 }
-                        
                         else
-                            
                             {
                               temp1=0;
                               idcn="";
                             }
-                        
                         idc=idc+idcn;        //the new id is added to the old one
                       }
                 }
-
         }
 }
